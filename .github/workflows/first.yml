@@ -51,7 +51,7 @@ jobs: # son una serie de pasos que se ejecutan
 
       - name: list workspace
         run: |
-          ls '${{ github.workspace }}'
+          # ls '${{ github.workspace }}' revisar
           echo This job's status is ${{ job.status }}."
 
       - name: Mostrando variables como json

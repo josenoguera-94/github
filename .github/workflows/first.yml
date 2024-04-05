@@ -1,6 +1,6 @@
 
 name: GitHub Actions Test # nombre del flujo de trabajo
-run-name: ${{ github.actor }} is testing out GitHub Actions # nombre del flujo de trabajo
+# run-name: ${{ github.actor }} is testing out GitHub Actions # por defecto se muestra el último commit realizado
 on: # eventos que activan el flujo de trabajo, [push]
   push:
     branches: [ "master" ]
@@ -51,7 +51,7 @@ jobs: # son una serie de pasos que se ejecutan
 
       - name: list workspace
         run: |
-          ls ${{ github.workspace }}
+          ls '${{ github.workspace }}'
           echo This job's status is ${{ job.status }}."
 
       - name: Mostrando variables como json

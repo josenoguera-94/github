@@ -1,0 +1,30 @@
+
+name: CI # nombre del flujo de trabajo
+
+on: # eventos que activan el flujo de trabajo
+  push:
+    branches: [ "master" ]
+#   pull_request: 
+#     branches: [ "master" ]
+
+  workflow_dispatch: # permite ejecutar el flujo de trabajo manualmente
+
+jobs: # son una serie de pasos que se ejecutan
+  build:
+    env: # variables de entorno
+      plataforma: ubuntu
+      region: us-east-1
+      environment: test
+
+    runs-on: ubuntu-latest # sistema operativo en el que se ejecutará el flujo de trabajo
+    steps:
+      - uses: actions/checkout@v3 # es una acción que se ejecuta
+
+      - name: Mostrar mensaje # nombre del paso, se puede colocar con ""
+        run: echo Hello, world!
+
+      - name: Mostrando variables de entorno
+        run: |
+          echo "Plataforma: $plataforma"
+          echo "Region: ${{env.region}}"
+          echo Environment: ${{env.environment}}

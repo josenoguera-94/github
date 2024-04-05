@@ -1,5 +1,9 @@
 # GITHUB
 
+- [GitHub Actions](https://docs.github.com/es/actions)
+- [Quickstart](https://docs.github.com/es/actions/quickstart)
+- [Default variables](https://docs.github.com/es/actions/learn-github-actions/variables)
+
 ## ACTIONS
 
 github actions es una herramienta que permite automatizar tareas del lado del servidor en un repositorio de github. Se pueden ejecutar acciones predefinidas o personalizadas en respuesta a eventos específicos.
@@ -19,3 +23,5 @@ sus principales componentes son:
 - **Secrets**: son las credenciales que se pueden utilizar en un job.
 - **Artifacts**: son los archivos que se pueden almacenar y compartir entre jobs.
 - **Cache**: es el almacenamiento en caché que se puede utilizar en un job.
+- 
+run shell uses with working-directory

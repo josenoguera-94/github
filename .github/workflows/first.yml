@@ -1,7 +1,7 @@
 
-name: CI # nombre del flujo de trabajo
-
-on: # eventos que activan el flujo de trabajo
+name: GitHub Actions Test # nombre del flujo de trabajo
+run-name: ${{ github.actor }} is testing out GitHub Actions # nombre del flujo de trabajo
+on: # eventos que activan el flujo de trabajo, [push]
   push:
     branches: [ "master" ]
 #   pull_request: 
@@ -10,7 +10,7 @@ on: # eventos que activan el flujo de trabajo
   workflow_dispatch: # permite ejecutar el flujo de trabajo manualmente
 
 jobs: # son una serie de pasos que se ejecutan
-  build:
+  build: # nombre del trabajo
     env: # variables de entorno
       plataforma: ubuntu
       region: us-east-1
@@ -45,3 +45,50 @@ jobs: # son una serie de pasos que se ejecutan
           else
             echo "La plataforma no es ubuntu"
           fi
+  work-2:
+    runs-on: ubuntu-latest #windows-latest
+    steps:
+
+      - name: list workspace
+        run: |
+          ls ${{ github.workspace }}
+          echo This job's status is ${{ job.status }}."
+
+      - name: Mostrando variables como json
+        run: |
+          echo "Evento: ${{ toJson(github.event) }}" # event muestra toda la información del evento
+          echo "nombre: ${{ toJson(github.event_name) }}"
+          echo "repository: ${{ toJson(github.event_path) }}"
+
+
+      - name: Mostrando variables de entorno de github
+        run: |
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          echo "GITHUB_SHA: $GITHUB_SHA"
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
+          echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
+          echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "GITHUB_ACTION: $GITHUB_ACTION"
+          echo "GITHUB_ACTIONS: $GITHUB_ACTIONS"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_JOB: $GITHUB_JOB"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_RETENTION_DAYS: $GITHUB_RETENTION_DAYS"
+          echo "GITHUB_SERVER_URL: $GITHUB_SERVER_URL"
+          echo "GITHUB_API_URL: $GITHUB_API_URL"
+          echo "GITHUB_GRAPHQL_URL: $GITHUB_GRAPHQL_URL"
+          echo "GITHUB_ACTION_REPOSITORY: $GITHUB_ACTION_REPOSITORY"
+          echo "GITHUB_ACTION_REF: $GITHUB_ACTION_REF"
+          echo "GITHUB_PATH: $GITHUB_PATH"
+          echo "GITHUB_ENV: $GITHUB_ENV"
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_ACTION_PATH: $GITHUB_ACTION_PATH"
+          echo "GITHUB_ACTIONS_RUNTIME: $GITHUB_ACTIONS_RUNTIME"
+          echo "GITHUB_ACTIONS_TOOL_CACHE: $GITHUB_ACTIONS_TOOL_CACHE"

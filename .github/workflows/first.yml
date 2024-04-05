@@ -18,7 +18,7 @@ jobs: # son una serie de pasos que se ejecutan
 
     runs-on: ubuntu-latest # sistema operativo en el que se ejecutará el flujo de trabajo
     steps:
-      - uses: actions/checkout@v3 # es una acción que se ejecuta
+      # - uses: actions/checkout@v3 # es una acción que se ejecuta
 
       - name: Mostrar mensaje # nombre del paso, se puede colocar con ""
         run: echo Hello, world!
@@ -28,3 +28,20 @@ jobs: # son una serie de pasos que se ejecutan
           echo "Plataforma: $plataforma"
           echo "Region: ${{env.region}}"
           echo Environment: ${{env.environment}}
+      - name: IF 1
+        if: ${{env.plataforma == 'ubuntu'}}
+        run: echo "La plataforma es ubuntu"
+
+      - name: IF 2
+        if: ${{env.plataforma}} == 'ubuntu'
+        run: echo "La plataforma es ubuntu 2"
+
+      - name: condicionales 3
+        run: |
+          if [ ${{env.plataforma}} == "windows" ]; then
+            echo "La plataforma es windows"
+          elif [ ${{env.plataforma}} == "ubuntu" ]; then
+            echo "La plataforma es ubuntu"
+          else
+            echo "La plataforma no es ubuntu"
+          fi
